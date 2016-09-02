@@ -3,7 +3,6 @@
 #include <string.h>
 #include <sys/time.h>
 #include <omp.h>
-//#include <cuda_runtime.h>
 
 //#define OUTPUT_PFAC_TABLE
 
@@ -32,28 +31,7 @@ int create_table(char *patternfilename)
     int final_state=0;
     int count;
     char string[PATTERN_LEN];
-
-
-    /*
-    // read PFAC table from file
-    fpin = fopen("PFAC_table.txt", "r");
-    if (fpin != NULL) {
-        while ( fscanf(fpin, "%d", &PFAC_table[state_num][0]) != EOF ) {
-            for (i = 1; i < CHAR_SET; i++) {
-                fscanf(fpin, "%d", &PFAC_table[state_num][i]);
-            }
-            fscanf(fpin, "%d", &output_table[state_num]);
-            state_num = state_num + 1;
-            if (state_num > MAX_STATE) {
-                perror("State number is over the max");
-                exit(1);
-            }
-        }
-        fclose(fpin);
-        return state_num;
-    }
-    */
-    
+ 
     // initialize PFAC table
     for (i = 0; i < MAX_STATE; i++) {
         for (j = 0; j < CHAR_SET; j++) {
