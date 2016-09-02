@@ -1,10 +1,3 @@
-/*****************************************************************************
-modified: 2010/09/01
-pattern file: ASCII format
-產生的table與振雄相同
-modified: 2010/09/15
-加入AC matching 功能
-******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -25,12 +18,9 @@ int pattern_len[11000];
 void enterpattern(char []);
 void constructfailure(void);
 void constructDFA(void);
-//void convert2pat(char*, char*);
-
-
 
 int *match_result;
-//int *match_len;
+
 
 int newstate=0;
 int pattern_num=0;
@@ -44,10 +34,10 @@ int main(int argc, char **argv){
 	FILE* inputPtr;
 	FILE* resultPtr;
 	char * buffer;
-  size_t result;
-  int lSize;
+	size_t result;
+	int lSize;
 	struct timeval t_start, t_end;
-  float elapsedTime;
+	float elapsedTime;
 
 
 	char string[PATTERN_LEN];
@@ -60,30 +50,30 @@ int main(int argc, char **argv){
 	int transition_dfa=0;
 
 	int state_num=0;
-  int state;
-  int pos;
-  int nState;
-  int count=0;
+	int state;
+	int pos;
+	int nState;
+	int count=0;
  
    
-  if(argc!=3)
-  	printf("using command: %s pattern_file input_stream\n",argv[0] );
+	if(argc!=3)
+		printf("using command: %s pattern_file input_stream\n",argv[0] );
 	
-  if((fptr=fopen(argv[1],"r"))==NULL){ //reading ASCII text
-	printf("Pattern file cannot be open.\n");
-	exit(1);
-  } 
+	if((fptr=fopen(argv[1],"r"))==NULL){ //reading ASCII text
+		printf("Pattern file cannot be open.\n");
+		exit(1);
+	} 
 	
-  if((inputPtr=fopen(argv[2],"rb"))==NULL){
+	if((inputPtr=fopen(argv[2],"rb"))==NULL){
        printf("Input stream file cannot be opened.\n");
        exit(1);
-  }
+	}
   
  
-  if((resultPtr=fopen("AC_CPU_match_result.txt","w"))==NULL){
+	if((resultPtr=fopen("AC_CPU_match_result.txt","w"))==NULL){
        printf("output file cannot be opened.\n");
        exit(1);
-  }
+	}
 
     //initial ac array
 	for (i=0;i<STATE_NUM;i++){
@@ -156,11 +146,11 @@ int main(int argc, char **argv){
 	   pattern_num++;
 	}
 
-  printf("The total state is %d\n",newstate);
+	printf("The total state is %d\n",newstate);
   
 	
-  //for all character a such that g(0,a)=fail do g(0,a) <-0
-  for(i=0;i<CHAR_NUM;i++){				
+	//for all character a such that g(0,a)=fail do g(0,a) <-0
+	for(i=0;i<CHAR_NUM;i++){				
 		if(AC_table[0][i]==-1)
 			AC_table[0][i]=0;
 	}
@@ -205,44 +195,29 @@ int main(int argc, char **argv){
      state=0;
      int matchVector;
      for(pos=0;pos<lSize;pos++){
-     	
-     	
-
-     	  nState=AC_table[state][buffer[pos]];
-     	  
-      
-     	 	  
-        while(nState==-1){
-        	
-        	
+     	nState=AC_table[state][buffer[pos]]; 	  
+        while(nState==-1){        	
            nState=failure_table[state];
            if((matchVector=output_table[nState])!=0){
-        	   match_result[pos-pattern_len[matchVector]] = matchVector;    
-                 
+        	   match_result[pos-pattern_len[matchVector]] = matchVector;                     
            }
            state=nState;   
-           nState=AC_table[state][buffer[pos]];                
-                         
+           nState=AC_table[state][buffer[pos]];                                        
         }        
              
         //state=AC_table[state][buffer[pos]];
         state=nState;
 
-        if((matchVector=output_table[state])!=0){
-                	
+        if((matchVector=output_table[state])!=0){                	
             match_result[pos+1-pattern_len[matchVector]] = matchVector;    
-           
         }
                 
         int fstate=state;
         while((fstate=failure_table[fstate])!=0){
            if((matchVector=output_table[fstate])!=0){
-           
-          
         	    match_result[pos+1-pattern_len[matchVector]] = matchVector;    
            }
-        }
-                           
+        }                           
      }
      
         
@@ -309,7 +284,7 @@ void constructfailure(void){
 	int state;
 	int temp;
 	int start=0;
-  int nState;
+	int nState;
 
 	
 	for(i=0;i<STATE_NUM;i++)
@@ -337,15 +312,6 @@ void constructfailure(void){
 				}
 				failure_table[nState]=AC_table[state][i];
 			
-				/*add 20101127*/
-				/*
-				if((output_table[nState]==0) && (output_table[state]!=0)){
-				   output_table[nState]=output_table[state];
-				   if ((2505 < nState) && (nState < 2510)){
-				     printf("output[%d] = output[%d] = %d\n", nState, state, output_table[state]) ;
-				   } 
-				}	                         			
-			   */
 			}
 		}
 		start++;
