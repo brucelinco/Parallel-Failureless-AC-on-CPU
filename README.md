@@ -7,7 +7,7 @@
 ### PFAC_CPU_OMP.c is the implementation of multi-threaded Parallel Failureless Aho-Corasick algorithm on CPU.
 
 ###Compile:
-####gcc AC_CPU.c -o AC_CPU -O3 
+'gcc AC_CPU.c -o AC_CPU -O3' 
 ####gcc AC_CPU_OMP.c -o AC_CPU_OMP -fopenmp -O3 
 ####gcc PFAC_CPU.c -o PFAC_CPU -O3
 ####gcc PFAC_CPU_OMP.c -o PFAC_CPU_OMP -fopenmp -O3
