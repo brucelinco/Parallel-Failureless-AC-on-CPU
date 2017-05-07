@@ -23,7 +23,10 @@ his
 the
 her
 ```
-### The inputs.txt contains a string "shethehishetheehershehehishe".
+### 2. The inputs.txt contains a string as follows. 
+```
+shethehishetheehershehehishe
+```
 ### 3. Run the following commands or the script "compileAndTest.sh"
 ```
 ./AC_CPU patterns.txt inputs.txt
