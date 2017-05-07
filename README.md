@@ -8,8 +8,11 @@
 
 ### Compile:
 `gcc AC_CPU.c -o AC_CPU -O3`
-`gcc AC_CPU_OMP.c -o AC_CPU_OMP -fopenmp -O3` 
+
+`gcc AC_CPU_OMP.c -o AC_CPU_OMP -fopenmp -O3`
+
 `gcc PFAC_CPU.c -o PFAC_CPU -O3`
+
 `gcc PFAC_CPU_OMP.c -o PFAC_CPU_OMP -fopenmp -O3`
 
 ### Run:
@@ -22,8 +25,11 @@
 ### The inputs.txt contains a string "shethehishetheehershehehishe".
 ### 3. Run the following commands or the script "compileAndTest.sh"
 `./AC_CPU patterns.txt inputs.txt`
+
 `./AC_CPU_OMP patterns.txt inputs.txt`
+
 `./PFAC_CPU patterns.txt inputs.txt`
+
 `./PFAC_CPU_OMP patterns.txt inputs.txt`
 ### Match results:
 ### The match result file show the position and matched patterns as follows.
