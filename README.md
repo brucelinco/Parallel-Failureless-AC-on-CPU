@@ -16,11 +16,13 @@ gcc PFAC_CPU_OMP.c -o PFAC_CPU_OMP -fopenmp -O3
 
 ### Run:
 ### 1. prepare pattern file and input file. The pattern file can contain multiple lines of patterns. For example, the patterns.txt contains five patterns as follows. 
-#### she 
-#### he
-#### his
-#### the
-#### her 
+```
+she 
+he
+his
+the
+her
+```
 ### The inputs.txt contains a string "shethehishetheehershehehishe".
 ### 3. Run the following commands or the script "compileAndTest.sh"
 ```
@@ -30,8 +32,7 @@ gcc PFAC_CPU_OMP.c -o PFAC_CPU_OMP -fopenmp -O3
 ./PFAC_CPU_OMP patterns.txt inputs.txt
 ```
 ### Match results:
-### The match result file show the position and matched patterns as follows.
-### For example:
+### The match result file shows the position and matched patterns as follows.
 ```
 At position    0, match pattern 1
 At position    1, match pattern 2
@@ -50,5 +51,3 @@ At position   23, match pattern 3
 At position   25, match pattern 1
 At position   26, match pattern 2
 ```
-
- 
